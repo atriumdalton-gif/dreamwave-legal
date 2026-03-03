@@ -3,23 +3,392 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dreamwave AI — Legal</title>
+  <title>Dreamwave AI — Decode Your Dreams</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 480px; margin: 0 auto; padding: 60px 24px; color: #1a1a1a; line-height: 1.7; text-align: center; }
-    h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 6px; }
-    p { color: #666; font-size: 0.95rem; }
-    .links { display: flex; flex-direction: column; gap: 14px; margin-top: 36px; }
-    a.btn { display: block; padding: 14px 20px; border-radius: 10px; background: #f5f3ff; color: #7c3aed; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
-    a.btn:hover { background: #ede9fe; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #7c3aed;
+      --purple-light: #a78bfa;
+      --bg: #07070f;
+      --card: #0e0e1c;
+      --text: #f0eeff;
+      --muted: #8b85a8;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(7,7,15,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(124,58,237,.12);
+    }
+    .nav-brand {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: .04em;
+    }
+    .nav-cta {
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,.28) 0%, transparent 65%);
+      position: relative;
+    }
+    .hero-moon { font-size: 72px; margin-bottom: 24px; }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(124,58,237,.18);
+      border: 1px solid rgba(124,58,237,.35);
+      color: var(--purple-light);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(32px, 6vw, 58px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #f0eeff 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      color: #fff;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 8px 32px rgba(124,58,237,.45);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(124,58,237,.55); }
+    .btn-ghost {
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      transition: background .15s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); }
+    .hero-legal { font-size: 13px; color: var(--muted); margin-top: 16px; }
+
+    /* STATS */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      padding: 60px 24px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Cinzel', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--purple-light);
+    }
+    .stat-lbl { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
+    /* FEATURES */
+    .features {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 24px;
+    }
+    .section-tag {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(26px, 4vw, 40px);
+      text-align: center;
+      margin-bottom: 60px;
+      line-height: 1.25;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--card);
+      border: 1px solid rgba(124,58,237,.18);
+      border-radius: 20px;
+      padding: 28px;
+      transition: border-color .2s, transform .2s;
+    }
+    .feature-card:hover { border-color: rgba(124,58,237,.45); transform: translateY(-3px); }
+    .feature-icon { font-size: 32px; margin-bottom: 14px; }
+    .feature-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .feature-desc { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+    /* HOW IT WORKS */
+    .how {
+      background: radial-gradient(ellipse at 50% 50%, rgba(124,58,237,.12) 0%, transparent 70%);
+      padding: 100px 24px;
+    }
+    .steps {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #a78bfa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .step-title { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .step-desc { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center;
+      padding: 100px 24px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .cta-section h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(26px, 4vw, 38px);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+    .cta-section p { color: var(--muted); font-size: 17px; margin-bottom: 36px; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 32px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-brand { font-family: 'Cinzel', serif; font-size: 15px; color: var(--muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 14px; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .stats { gap: 36px; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
   </style>
 </head>
 <body>
-  <h1>Dreamwave AI</h1>
-  <p>Dream journal & AI companion</p>
-  <div class="links">
-    <a class="btn" href="privacy.html">Privacy Policy</a>
-    <a class="btn" href="terms.html">Terms of Use</a>
-    <a class="btn" href="support.html">Support</a>
+
+  <nav>
+    <a class="nav-brand" href="#">Dreamwave AI</a>
+    <a class="nav-cta" href="#download">Download Free</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-moon">🌙</div>
+    <div class="hero-tag">AI Dream Journal</div>
+    <h1>Discover What Your<br>Dreams Are Telling You</h1>
+    <p class="hero-sub">Log your dreams, uncover hidden patterns, and talk to your AI subconscious companion. The deeper you dig, the more you understand yourself.</p>
+    <div class="hero-btns" id="download">
+      <a class="btn-primary" href="#">⬇ Download on the App Store</a>
+      <a class="btn-ghost" href="#features">See Features</a>
+    </div>
+    <p class="hero-legal">Free to start · 7-day Pro trial · iOS only</p>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num">10K+</div>
+      <div class="stat-lbl">Dreams Decoded</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">94%</div>
+      <div class="stat-lbl">Feel More Self-Aware</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4.9★</div>
+      <div class="stat-lbl">App Store Rating</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">30s</div>
+      <div class="stat-lbl">To Log a Dream</div>
+    </div>
   </div>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-tag">What You Get</div>
+    <h2 class="section-title">Everything Your<br>Subconscious Needs</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <div class="feature-title">AI Dream Analysis</div>
+        <div class="feature-desc">Every dream is analyzed for symbols, themes, and emotional triggers by Claude AI — one of the most advanced language models in the world.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Pattern Recognition</div>
+        <div class="feature-desc">Spot recurring symbols and emotional trends across weeks and months. See exactly how your subconscious is shifting over time.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <div class="feature-title">AI Subconscious Companion</div>
+        <div class="feature-desc">Chat with an AI that knows your entire dream history. Ask it anything about your patterns, fears, or recurring themes.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎙️</div>
+        <div class="feature-title">Voice Logging</div>
+        <div class="feature-desc">Wake up and just speak — your dream gets transcribed automatically. Capture it in seconds before it fades.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <div class="feature-title">Weekly & Monthly Reports</div>
+        <div class="feature-desc">Deep subconscious reports that synthesize your dreams into actionable psychological insights and growth directions.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">Fully Private</div>
+        <div class="feature-desc">Your dreams are yours. Stored securely, never shared, never used for training. Delete everything anytime.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-title" style="margin-bottom:48px">Three Steps to Clarity</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Log your dream</div>
+          <div class="step-desc">Type or speak your dream right after waking up. Takes 30 seconds. A daily reminder makes sure you never forget.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Get your analysis</div>
+          <div class="step-desc">Dreamwave AI identifies symbols, emotional themes, and subconscious messages — giving you a depth score and personalized insight.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Discover your patterns</div>
+          <div class="step-desc">Over time, your dream journal reveals what your subconscious is processing — fears, desires, growth, and transformation.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Start Decoding Tonight</h2>
+    <p>Free to download. Your first 3 analyses are on us.</p>
+    <a class="btn-primary" href="#">⬇ Download on the App Store</a>
+    <p style="font-size:13px;color:var(--muted);margin-top:16px">7-day free trial · $9.99/mo or $79/yr · Cancel anytime</p>
+  </section>
+
+  <footer>
+    <div class="footer-brand">Dreamwave AI</div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="support.html">Support</a>
+    </div>
+  </footer>
+
 </body>
 </html>
