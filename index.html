@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dreamwave AI — Decode Your Dreams</title>
+  <title>Dreamwave AI — Creator Brief</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -45,9 +45,18 @@
       text-decoration: none;
       letter-spacing: .04em;
     }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--text); }
     .nav-cta {
       background: var(--purple);
-      color: #fff;
+      color: #fff !important;
       border: none;
       padding: 10px 22px;
       border-radius: 50px;
@@ -68,7 +77,6 @@
       text-align: center;
       padding: 120px 24px 80px;
       background: radial-gradient(ellipse at 50% 0%, rgba(124,58,237,.28) 0%, transparent 65%);
-      position: relative;
     }
     .hero-moon { font-size: 72px; margin-bottom: 24px; }
     .hero-tag {
@@ -97,15 +105,9 @@
     .hero-sub {
       font-size: clamp(16px, 2.5vw, 20px);
       color: var(--muted);
-      max-width: 540px;
+      max-width: 580px;
       margin: 0 auto 40px;
       line-height: 1.7;
-    }
-    .hero-btns {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: center;
     }
     .btn-primary {
       background: linear-gradient(135deg, #7c3aed, #6d28d9);
@@ -120,51 +122,22 @@
       font-family: 'Inter', sans-serif;
       box-shadow: 0 8px 32px rgba(124,58,237,.45);
       transition: transform .15s, box-shadow .15s;
+      display: inline-block;
     }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(124,58,237,.55); }
-    .btn-ghost {
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      border: 1px solid rgba(255,255,255,.12);
-      padding: 16px 32px;
-      border-radius: 50px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      transition: background .15s;
-    }
-    .btn-ghost:hover { background: rgba(255,255,255,.1); }
-    .hero-legal { font-size: 13px; color: var(--muted); margin-top: 16px; }
 
-    /* STATS */
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 60px;
-      flex-wrap: wrap;
-      padding: 60px 24px;
-      border-top: 1px solid rgba(255,255,255,.06);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .stat-item { text-align: center; }
-    .stat-num {
-      font-family: 'Cinzel', serif;
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--purple-light);
-    }
-    .stat-lbl { font-size: 14px; color: var(--muted); margin-top: 4px; }
-
-    /* FEATURES */
-    .features {
-      max-width: 1100px;
+    /* SECTIONS */
+    .section {
+      max-width: 900px;
       margin: 0 auto;
-      padding: 100px 24px;
+      padding: 80px 24px;
+    }
+    .section-divider {
+      border: none;
+      border-top: 1px solid rgba(124,58,237,.15);
+      margin: 0;
     }
     .section-tag {
-      text-align: center;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: .12em;
@@ -174,74 +147,129 @@
     }
     .section-title {
       font-family: 'Cinzel', serif;
-      font-size: clamp(26px, 4vw, 40px);
-      text-align: center;
-      margin-bottom: 60px;
+      font-size: clamp(24px, 4vw, 36px);
+      margin-bottom: 24px;
       line-height: 1.25;
     }
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+    .section p, .section li {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
     }
-    .feature-card {
+    .section p { margin-bottom: 16px; }
+    .section ul { list-style: none; padding: 0; margin-bottom: 24px; }
+    .section li { padding: 6px 0; padding-left: 24px; position: relative; }
+    .section li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--purple-light);
+      font-weight: 600;
+    }
+
+    /* CARDS */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .card {
       background: var(--card);
       border: 1px solid rgba(124,58,237,.18);
-      border-radius: 20px;
-      padding: 28px;
-      transition: border-color .2s, transform .2s;
+      border-radius: 16px;
+      padding: 24px;
     }
-    .feature-card:hover { border-color: rgba(124,58,237,.45); transform: translateY(-3px); }
-    .feature-icon { font-size: 32px; margin-bottom: 14px; }
-    .feature-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
-    .feature-desc { font-size: 15px; color: var(--muted); line-height: 1.6; }
+    .card-icon { font-size: 28px; margin-bottom: 12px; }
+    .card-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+    .card-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
-    /* HOW IT WORKS */
-    .how {
-      background: radial-gradient(ellipse at 50% 50%, rgba(124,58,237,.12) 0%, transparent 70%);
-      padding: 100px 24px;
+    /* HOOK TABLE */
+    .hook-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
     }
-    .steps {
-      max-width: 700px;
-      margin: 0 auto;
+    .hook-table th {
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--purple-light);
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(124,58,237,.25);
+    }
+    .hook-table td {
+      padding: 14px 16px;
+      font-size: 15px;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      vertical-align: top;
+    }
+    .hook-table tr:last-child td { border-bottom: none; }
+    .hook-label {
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* QUOTE */
+    .quote-block {
+      background: rgba(124,58,237,.08);
+      border-left: 3px solid var(--purple);
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin: 24px 0;
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    /* TONE PILLS */
+    .pill-row {
       display: flex;
-      flex-direction: column;
-      gap: 32px;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 24px;
     }
-    .step {
+    .pill {
+      background: rgba(124,58,237,.15);
+      border: 1px solid rgba(124,58,237,.3);
+      color: var(--purple-light);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 50px;
+    }
+
+    /* COLOR SWATCHES */
+    .swatch-row {
       display: flex;
-      gap: 20px;
-      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 16px 0 24px;
     }
-    .step-num {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    .swatch {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 15px;
+      gap: 10px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 10px 16px;
+    }
+    .swatch-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.1);
       flex-shrink: 0;
     }
-    .step-title { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
-    .step-desc { font-size: 15px; color: var(--muted); line-height: 1.6; }
-
-    /* CTA SECTION */
-    .cta-section {
-      text-align: center;
-      padding: 100px 24px;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .cta-section h2 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(26px, 4vw, 38px);
-      margin-bottom: 16px;
-      line-height: 1.25;
-    }
-    .cta-section p { color: var(--muted); font-size: 17px; margin-bottom: 36px; }
+    .swatch-info { font-size: 13px; }
+    .swatch-name { font-weight: 600; color: var(--text); }
+    .swatch-hex { color: var(--muted); }
 
     /* FOOTER */
     footer {
@@ -260,9 +288,13 @@
 
     @media (max-width: 600px) {
       nav { padding: 16px 20px; }
-      .stats { gap: 36px; }
+      .nav-links { gap: 16px; }
+      .hero { padding: 100px 20px 60px; }
+      .section { padding: 60px 20px; }
       footer { flex-direction: column; text-align: center; }
       .footer-links { justify-content: center; }
+      .hook-table { font-size: 14px; }
+      .hook-table th, .hook-table td { padding: 10px 10px; }
     }
   </style>
 </head>
@@ -270,123 +302,267 @@
 
   <nav>
     <a class="nav-brand" href="#">Dreamwave AI</a>
-    <a class="nav-cta" href="#download">Download Free</a>
+    <div class="nav-links">
+      <a href="#what">What It Is</a>
+      <a href="#features">Features</a>
+      <a href="#hooks">Hooks</a>
+      <a href="#brand">Brand</a>
+      <a class="nav-cta" href="#download">Download</a>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-moon">🌙</div>
-    <div class="hero-tag">AI Dream Journal</div>
-    <h1>Discover What Your<br>Dreams Are Telling You</h1>
-    <p class="hero-sub">Log your dreams, uncover hidden patterns, and talk to your AI subconscious companion. The deeper you dig, the more you understand yourself.</p>
-    <div class="hero-btns" id="download">
-      <a class="btn-primary" href="#">⬇ Download on the App Store</a>
-      <a class="btn-ghost" href="#features">See Features</a>
-    </div>
-    <p class="hero-legal">Free to start · 7-day Pro trial · iOS only</p>
+    <div class="hero-tag">UGC Creator Brief</div>
+    <h1>Dreamwave AI<br>Creator Toolkit</h1>
+    <p class="hero-sub">Everything you need to know to create incredible content for Dreamwave AI — the AI-powered dream journal that decodes your subconscious.</p>
+    <a class="btn-primary" href="#what">Read the Brief</a>
   </section>
 
-  <!-- STATS -->
-  <div class="stats">
-    <div class="stat-item">
-      <div class="stat-num">10K+</div>
-      <div class="stat-lbl">Dreams Decoded</div>
+  <hr class="section-divider">
+
+  <!-- WHAT IT IS -->
+  <section class="section" id="what">
+    <div class="section-tag">The App</div>
+    <h2 class="section-title">What is Dreamwave AI?</h2>
+    <p>Dreamwave AI is an iOS app that turns your dreams into deep psychological insights. You log your dream when you wake up — by typing or speaking — and the AI instantly analyzes it for hidden symbols, emotional patterns, and subconscious messages.</p>
+    <p>The more you use it, the smarter it gets. It builds a memory of your dream history and spots patterns you'd never notice on your own — recurring themes, emotional shifts, symbols that keep coming back.</p>
+    <p>Think of it as a <strong style="color:var(--text)">personal subconscious therapist</strong> that lives in your pocket and learns everything about your inner world.</p>
+
+    <div class="quote-block">
+      "Your dreams are the most honest version of you. Dreamwave helps you finally understand what they're saying."
     </div>
-    <div class="stat-item">
-      <div class="stat-num">94%</div>
-      <div class="stat-lbl">Feel More Self-Aware</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">4.9★</div>
-      <div class="stat-lbl">App Store Rating</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">30s</div>
-      <div class="stat-lbl">To Log a Dream</div>
-    </div>
-  </div>
+
+    <h3 style="font-size:18px;margin:32px 0 16px;font-weight:600;">Who Is It For?</h3>
+    <ul>
+      <li>People who remember their dreams and wonder what they mean</li>
+      <li>Self-improvement and personal growth enthusiasts</li>
+      <li>Therapy-curious people who want to understand their subconscious</li>
+      <li>Spiritual/manifestation communities interested in dream symbolism</li>
+      <li>Anyone who journals and wants an AI-powered upgrade</li>
+      <li>Students of psychology, dream work, or Jungian analysis</li>
+    </ul>
+
+    <h3 style="font-size:18px;margin:32px 0 16px;font-weight:600;">The One-Liner</h3>
+    <p style="color:var(--text);font-size:18px;font-weight:500;">Dreamwave AI decodes your dreams using artificial intelligence — revealing what your subconscious is trying to tell you.</p>
+  </section>
+
+  <hr class="section-divider">
 
   <!-- FEATURES -->
-  <section class="features" id="features">
-    <div class="section-tag">What You Get</div>
-    <h2 class="section-title">Everything Your<br>Subconscious Needs</h2>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🔍</div>
-        <div class="feature-title">AI Dream Analysis</div>
-        <div class="feature-desc">Every dream is analyzed for symbols, themes, and emotional triggers by Claude AI — one of the most advanced language models in the world.</div>
+  <section class="section" id="features">
+    <div class="section-tag">Features</div>
+    <h2 class="section-title">What the App Does</h2>
+    <p>These are the features creators should highlight. Each one is a potential content angle.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <div class="card-title">AI Dream Analysis</div>
+        <div class="card-desc">Log any dream and get an instant breakdown — symbols identified, emotional themes decoded, a "depth score" from 0-100, and a personalized subconscious message. Powered by Claude AI, one of the most advanced AI models in the world.</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <div class="feature-title">Pattern Recognition</div>
-        <div class="feature-desc">Spot recurring symbols and emotional trends across weeks and months. See exactly how your subconscious is shifting over time.</div>
+      <div class="card">
+        <div class="card-icon">🎙️</div>
+        <div class="card-title">Voice Logging</div>
+        <div class="card-desc">Speak your dream the moment you wake up. The app transcribes it automatically — so you capture every detail before it fades. Takes 30 seconds.</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">💬</div>
-        <div class="feature-title">AI Subconscious Companion</div>
-        <div class="feature-desc">Chat with an AI that knows your entire dream history. Ask it anything about your patterns, fears, or recurring themes.</div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <div class="card-title">AI Dream Companion</div>
+        <div class="card-desc">Chat with an AI that knows your entire dream history. Ask it "why do I keep dreaming about water?" or "what's my biggest fear based on my dreams?" It remembers everything.</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎙️</div>
-        <div class="feature-title">Voice Logging</div>
-        <div class="feature-desc">Wake up and just speak — your dream gets transcribed automatically. Capture it in seconds before it fades.</div>
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <div class="card-title">Pattern Recognition</div>
+        <div class="card-desc">The app tracks your recurring symbols, emotions, and themes over weeks and months. You'll start seeing connections between your dreams and your waking life.</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">📈</div>
-        <div class="feature-title">Weekly & Monthly Reports</div>
-        <div class="feature-desc">Deep subconscious reports that synthesize your dreams into actionable psychological insights and growth directions.</div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <div class="card-title">Subconscious Reports</div>
+        <div class="card-desc">Get a weekly AI-generated report that synthesizes all your dreams into a psychological profile — what your mind is processing, emotional trajectories, and growth directions.</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <div class="feature-title">Fully Private</div>
-        <div class="feature-desc">Your dreams are yours. Stored securely, never shared, never used for training. Delete everything anytime.</div>
+      <div class="card">
+        <div class="card-icon">🧩</div>
+        <div class="card-title">Decode Your Dream</div>
+        <div class="card-desc">A guided multi-step flow that helps you reconstruct your dream piece by piece — setting, characters, emotions, symbols — before the AI analyzes it. Great for people who only remember fragments.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔥</div>
+        <div class="card-title">Dream Streaks</div>
+        <div class="card-desc">Log a dream every day to build your streak. The app sends a gentle morning reminder at your wake time. Gamification meets self-discovery.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <div class="card-title">Fully Private</div>
+        <div class="card-desc">Dreams are deeply personal. Everything is encrypted, never shared, never used for training. Users can delete all their data at any time.</div>
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="how">
-    <div class="section-tag">How It Works</div>
-    <h2 class="section-title" style="margin-bottom:48px">Three Steps to Clarity</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div>
-          <div class="step-title">Log your dream</div>
-          <div class="step-desc">Type or speak your dream right after waking up. Takes 30 seconds. A daily reminder makes sure you never forget.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div>
-          <div class="step-title">Get your analysis</div>
-          <div class="step-desc">Dreamwave AI identifies symbols, emotional themes, and subconscious messages — giving you a depth score and personalized insight.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div>
-          <div class="step-title">Discover your patterns</div>
-          <div class="step-desc">Over time, your dream journal reveals what your subconscious is processing — fears, desires, growth, and transformation.</div>
-        </div>
-      </div>
-    </div>
+  <hr class="section-divider">
+
+  <!-- CONTENT ANGLES -->
+  <section class="section" id="hooks">
+    <div class="section-tag">Content Ideas</div>
+    <h2 class="section-title">Hooks & Angles That Work</h2>
+    <p>Here are proven content angles for UGC. Pick the ones that feel natural to your style.</p>
+
+    <table class="hook-table">
+      <thead>
+        <tr>
+          <th>Hook Type</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="hook-label">The Reveal</span></td>
+          <td>"I've been having this recurring dream for years. I finally found out what it means..." [show analysis]</td>
+        </tr>
+        <tr>
+          <td><span class="hook-label">The Morning Routine</span></td>
+          <td>"The first thing I do every morning is log my dream before I forget it" [show voice logging → analysis]</td>
+        </tr>
+        <tr>
+          <td><span class="hook-label">The Creepy Dream</span></td>
+          <td>"I had the most disturbing dream last night. Let's see what my subconscious is trying to tell me..." [log it → show results]</td>
+        </tr>
+        <tr>
+          <td><span class="hook-label">The Pattern Discovery</span></td>
+          <td>"After 30 days of logging my dreams, I found out my biggest subconscious fear is..." [show patterns/report]</td>
+        </tr>
+        <tr>
+          <td><span class="hook-label">The Companion Chat</span></td>
+          <td>"I asked the AI about my recurring dream and its answer gave me chills..." [show chat]</td>
+        </tr>
+        <tr>
+          <td><span class="hook-label">The Depth Score</span></td>
+          <td>"I got a 94 depth score on my dream last night. That means..." [explain what depth score means]</td>
+        </tr>
+        <tr>
+          <td><span class="hook-label">The Skeptic</span></td>
+          <td>"I didn't believe an AI could analyze my dreams. Then it told me something about myself that no one else knows..."</td>
+        </tr>
+        <tr>
+          <td><span class="hook-label">Couples/Friends</span></td>
+          <td>"My girlfriend and I logged the same dream. Look at how different our analyses are..."</td>
+        </tr>
+        <tr>
+          <td><span class="hook-label">Self-Improvement</span></td>
+          <td>"I replaced doomscrolling before bed with this app and it's actually changing how I understand myself"</td>
+        </tr>
+        <tr>
+          <td><span class="hook-label">The Weekly Report</span></td>
+          <td>"My subconscious report just dropped. Apparently I've been processing [anxiety/growth/change]..."</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:18px;margin:32px 0 16px;font-weight:600;">Key Talking Points</h3>
+    <ul>
+      <li>It uses real AI (Claude by Anthropic) — not generic horoscope stuff</li>
+      <li>Voice logging means you capture dreams before they fade</li>
+      <li>The AI companion remembers ALL your dreams — it knows your patterns better than you do</li>
+      <li>The depth score is addictive — people want to see how "deep" their dreams go</li>
+      <li>It's like having a therapist that only analyzes your dreams</li>
+      <li>The more days in a row you log, the more accurate the patterns get</li>
+      <li>Weekly reports feel like getting a psychological profile of yourself</li>
+      <li>It's completely private — your dreams are never shared or used for training</li>
+    </ul>
+
+    <h3 style="font-size:18px;margin:32px 0 16px;font-weight:600;">What NOT to Say</h3>
+    <ul>
+      <li>Don't say it replaces therapy or provides medical advice</li>
+      <li>Don't make health claims — it's for entertainment and self-reflection</li>
+      <li>Don't say "it reads your mind" — it analyzes the dream text you give it</li>
+      <li>Don't share your full login credentials on camera</li>
+    </ul>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <h2>Start Decoding Tonight</h2>
-    <p>Free to download. Your first 3 analyses are on us.</p>
-    <a class="btn-primary" href="#">⬇ Download on the App Store</a>
-    <p style="font-size:13px;color:var(--muted);margin-top:16px">7-day free trial · $9.99/mo or $79/yr · Cancel anytime</p>
+  <hr class="section-divider">
+
+  <!-- TONE & BRAND -->
+  <section class="section" id="brand">
+    <div class="section-tag">Brand Guide</div>
+    <h2 class="section-title">Tone & Visual Identity</h2>
+
+    <h3 style="font-size:18px;margin:0 0 16px;font-weight:600;">Brand Personality</h3>
+    <p>Dreamwave is mysterious but approachable. Think late-night curiosity meets genuine psychological depth. It's not woo-woo or astrology — it's AI-powered self-discovery.</p>
+
+    <h3 style="font-size:18px;margin:24px 0 12px;font-weight:600;">Tone Keywords</h3>
+    <div class="pill-row">
+      <span class="pill">Mysterious</span>
+      <span class="pill">Introspective</span>
+      <span class="pill">Genuine</span>
+      <span class="pill">Curious</span>
+      <span class="pill">Deep</span>
+      <span class="pill">Personal</span>
+      <span class="pill">Late-night energy</span>
+    </div>
+
+    <h3 style="font-size:18px;margin:24px 0 12px;font-weight:600;">Brand Colors</h3>
+    <div class="swatch-row">
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#07070f;"></div>
+        <div class="swatch-info"><div class="swatch-name">Deep Night</div><div class="swatch-hex">#07070f</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#0e0e1c;"></div>
+        <div class="swatch-info"><div class="swatch-name">Card Dark</div><div class="swatch-hex">#0e0e1c</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#7c3aed;"></div>
+        <div class="swatch-info"><div class="swatch-name">Dreamwave Purple</div><div class="swatch-hex">#7c3aed</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#a78bfa;"></div>
+        <div class="swatch-info"><div class="swatch-name">Light Purple</div><div class="swatch-hex">#a78bfa</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#f0eeff;"></div>
+        <div class="swatch-info"><div class="swatch-name">Ghost White</div><div class="swatch-hex">#f0eeff</div></div>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px;margin:24px 0 12px;font-weight:600;">Visual Suggestions for Content</h3>
+    <ul>
+      <li>Film in low light / cozy bedroom setup — match the app's dark theme</li>
+      <li>Morning-in-bed POV works great for "just woke up" authenticity</li>
+      <li>Screen record the actual app — the analysis animations are satisfying</li>
+      <li>Purple lighting or accents tie in with the brand</li>
+      <li>ASMR/whisper tone works well for dream content</li>
+      <li>Split screen: you talking on one side, app on the other</li>
+    </ul>
+
+    <h3 style="font-size:18px;margin:32px 0 12px;font-weight:600;">App Name & Taglines</h3>
+    <p style="color:var(--text);font-weight:600;font-size:17px;margin-bottom:8px;">Dreamwave AI</p>
+    <ul>
+      <li>"Decode your dreams"</li>
+      <li>"Your subconscious is speaking. Are you listening?"</li>
+      <li>"See what your dreams are trying to tell you"</li>
+      <li>"AI-powered dream journal"</li>
+    </ul>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- DOWNLOAD -->
+  <section class="section" style="text-align:center;padding:80px 24px 100px;" id="download">
+    <div class="section-tag">Get the App</div>
+    <h2 class="section-title">Download Dreamwave AI</h2>
+    <p style="max-width:480px;margin:0 auto 32px;">Free to download on iOS. All features unlocked. Start decoding your dreams tonight.</p>
+    <a class="btn-primary" href="#">Coming Soon to the App Store</a>
+    <p style="font-size:13px;color:var(--muted);margin-top:16px;">iOS only &middot; Free to use &middot; No credit card required</p>
   </section>
 
   <footer>
-    <div class="footer-brand">Dreamwave AI</div>
+    <div class="footer-brand">Dreamwave AI &middot; PrimeCode Studios</div>
     <div class="footer-links">
       <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Use</a>
+      <a href="terms.html">Terms of Service</a>
       <a href="support.html">Support</a>
+      <a href="mailto:primecodestudios14@gmail.com">Contact</a>
     </div>
   </footer>
 
